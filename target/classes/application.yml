@@ -1,0 +1,56 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: weather-calendar-notifier
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  thymeleaf:
+    cache: false
+
+# 날씨 API 설정
+weather:
+  api:
+    openweather:
+      url: https://api.openweathermap.org/data/2.5
+      key: ${OPENWEATHER_API_KEY:your-api-key-here}
+
+# Google Calendar 설정
+google:
+  calendar:
+    credentials-file: ${GOOGLE_CREDENTIALS_FILE:credentials.json}
+    tokens-directory: ${GOOGLE_TOKENS_DIR:tokens}
+    application-name: Weather Calendar Notifier
+
+# 스케줄링 설정
+scheduler:
+  weather-update:
+    enabled: true
+    cron: "0 0 1 * * ?" # 매일 오전 1시
+
+# 로깅 설정
+logging:
+  level:
+    com.weathercalendar: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
