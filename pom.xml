@@ -48,7 +48,6 @@
         </dependency>
 
         <!-- Google Calendar API - 임시 비활성화 -->
-        <!--
         <dependency>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client</artifactId>
@@ -64,7 +63,6 @@
             <artifactId>google-api-services-calendar</artifactId>
             <version>v3-rev20220715-2.0.0</version>
         </dependency>
-        -->
 
         <!-- HTTP Client -->
         <dependency>
